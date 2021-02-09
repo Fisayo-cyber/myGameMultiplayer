@@ -26,6 +26,30 @@ class Game{
             form.display();
         }
     }
+
+    play() {
+        form.greeting.hide();
+        Player.getPlayerInfo()
+        // {player1,player2,...} // name - distance
+
+        //for-in 
+        var yPos = 100
+        for(var plr in allPlayers){
+            text(allPlayers[plr].name + " - " + allPlayers[plr].distance , 200 , yPos)
+            yPos = yPos + 30
+        }
+
+
+
+
+        if (keyDown('UP_ARROW')) {
+            player.distance = player.distance + 50
+            player.update()
+        }
+
+        console.log(allPlayers)
+            
+    }
     
 }
 

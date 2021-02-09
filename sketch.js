@@ -4,6 +4,7 @@ var player;
 var database;
 var gameState = 0
 var playerCount
+var allPlayers
 
 
 function setup(){
@@ -18,5 +19,11 @@ function setup(){
 
 function draw(){
     background("white");
-    
+    if (playerCount === 2) {
+        game.updateGameState(1)
+    }
+
+    if (gameState === 1) {
+        game.play()
+    }
 }
