@@ -30,7 +30,10 @@ class Game{
         car3 = createSprite(200, 400, 20, 20)
         car4 = createSprite(250, 400, 20, 20)
         cars = [car1, car2, car3, car4]
-
+        car1.addImage(car1Image)
+        car2.addImage(car2Image)
+        car3.addImage(car3Image)
+        car4.addImage(car4Image)
     }
 
     play() {
@@ -43,7 +46,7 @@ class Game{
         }
         */
         //for-in - loop through an object - JSON object or an array
-        var xPos = 100
+        var xPos = 350
         var yPos;
         var index = 0;
 
@@ -51,21 +54,22 @@ class Game{
         //player1 - player.index =1 , cars[0]
         //player2 - player.index =2, cars[1]
 
-        for(var plr in allPlayers){
+        for (var plr in allPlayers) {
             //text(allPlayers[plr].name + " - " + allPlayers[plr].distance , 200 , yPos)
             yPos = height - allPlayers[plr].distance
             cars[index].x = xPos;
             cars[index].y = yPos;
 
-            if(player.index - 1 === index){
+            if (player.index - 1 === index) {
                 cars[index].shapeColor = "red"
-                camera.position.y = cars[index].y
+                camera.position.y = cars[index].y - height / 2 + 100
             }
 
-            index = index + 1 
-            xPos = xPos + 50   
+            index = index + 1
+            xPos = xPos + 215
             
         }
+        
         
 
 
@@ -74,9 +78,18 @@ class Game{
             player.update()
         }
 
-        console.log(allPlayers)
-       drawSprites()     
+        console.log(player.distance)
+
+        image(track, 0, -6 * height, width, 7 * height)
+        drawSprites()
+       
+        if (player.distance > 4300) {
+           gameState = 2 
+            }
     }
-    
+
+    end() {
+        console.log("Game ended")
+    }
 }
 
