@@ -30,7 +30,7 @@ function setup(){
 
 
 function draw(){
-    background("white");
+    background(ground);
     if (playerCount === 4) {
         game.updateGameState(1)
     }

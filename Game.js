@@ -53,15 +53,18 @@ class Game{
         //player1 - car1 ,player2 -car2
         //player1 - player.index =1 , cars[0]
         //player2 - player.index =2, cars[1]
-
+        //display the track
+        image(track, 0, -6 * height, width, 7 * height)
         for (var plr in allPlayers) {
             //text(allPlayers[plr].name + " - " + allPlayers[plr].distance , 200 , yPos)
             yPos = height - allPlayers[plr].distance
             cars[index].x = xPos;
             cars[index].y = yPos;
 
+            //for the 3rd player to join the game - player.index = 3, cars index = 2
             if (player.index - 1 === index) {
-                cars[index].shapeColor = "red"
+                fill("red")
+                circle(xPos, yPos, 100)
                 camera.position.y = cars[index].y - height / 2 + 100
             }
 
@@ -70,9 +73,7 @@ class Game{
             
         }
         
-        
-
-
+        //update distance when up arrow is pressed
         if (keyDown('UP_ARROW')) {
             player.distance = player.distance + 50
             player.update()
@@ -80,12 +81,12 @@ class Game{
 
         console.log(player.distance)
 
-        image(track, 0, -6 * height, width, 7 * height)
+        
         drawSprites()
        
         if (player.distance > 4300) {
            gameState = 2 
-            }
+        }
     }
 
     end() {

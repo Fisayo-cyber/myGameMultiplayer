@@ -3,6 +3,7 @@ class Form{
         this.input = createInput("Name")
         this.button = createButton("Play")
         this.greeting = createElement("h2")
+        this.reset = createButton("Reset")
 
     }
     display() {
@@ -11,6 +12,8 @@ class Form{
         title.position(100, 0)
         this.input.position(100, 50)
         this.button.position(280, 50)
+        this.reset.position(1100, 50)
+        this.greeting.position(400, 100)
         //'this'- is bound to the immediate higher object
         //arrow function - changes the binding of 'this' - ()=>{}
         this.button.mousePressed(()=>{
@@ -25,6 +28,11 @@ class Form{
 
         })
         
+        this.reset.mousePressed(() => {
+            player.updateCount(0);
+            game.updateGameState(0);
+            window.location.reload();
+        })
     }
 
 }
