@@ -3,6 +3,7 @@ class Player{
         this.name = null;
         this.index = null;
         this.distance = 0
+        this.rank = null;
     }
 
     //get playerCount from the db
@@ -18,6 +19,19 @@ class Player{
             
         })
     }
+
+    getFinishedCars() {
+        database.ref("finishedCars").on("value", (data)=> {
+            this.rank = data.val()
+        })
+    }
+
+    updateFinishedCars(rank) {
+        database.ref('/').update({
+            finishedCars: rank
+        })
+
+    }
     //update the name .. form a new node - player1 , player2 ... - child node name -
     update() {
         //parent node - players - child nodes like player1, player2 ... 
@@ -25,7 +39,8 @@ class Player{
         var playerIndex = "players/player" + this.index
         database.ref(playerIndex).set({
             name: this.name, 
-            distance: this.distance
+            distance: this.distance,
+            rank: this.rank
         })
     }
     //it is related to all the players - 

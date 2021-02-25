@@ -31,6 +31,7 @@ class Form{
         this.reset.mousePressed(() => {
             player.updateCount(0);
             game.updateGameState(0);
+            player.updateFinishedCars(0);
             window.location.reload();
         })
     }

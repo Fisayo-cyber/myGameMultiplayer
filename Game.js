@@ -39,6 +39,7 @@ class Game{
     play() {
         form.greeting.hide();
         Player.getPlayerInfo()
+        player.getFinishedCars()
         // {player1,player2,...} // name - distance
         /* {
             player1 : name : ""
@@ -84,13 +85,27 @@ class Game{
         
         drawSprites()
        
+
         if (player.distance > 4300) {
-           gameState = 2 
+            gameState = 2 
+            player.rank = player.rank + 1
+            player.updateFinishedCars(player.rank)
+            player.update()
         }
     }
 
     end() {
-        console.log("Game ended")
+        console.log(player.rank)
+        camera.position.x = width / 2
+        camera.position.y = height / 2
+        
+        var yPos = 300
+        for (var plr in allPlayers) {
+            fill("red")
+            textSize(23)
+            text(allPlayers[plr].name + "," + allPlayers[plr].rank, 300, yPos)
+            yPos = yPos + 30
+        }
     }
 }
 
