@@ -4,21 +4,32 @@ var player;
 var database;
 var gameState = 0
 var playerCount
-var allPlayers
-var car1, car2, car3, car4, cars
-var car1Image, car2Image, car3Image, car4Image, track, ground
+var allPlayers;
+var car1, car2;
+var car1Image, car2Image ;
+var track, trackImage
+var wall1;
+var wall2;
+var wall3;
+var wall4;
+var wall5;
+var wall6;
+var wall7;
+var wall8;
+var wall8;
+var wall9;
+var wall10;
+var wallsGroup;
+
+
 function preload() {
     car1Image = loadImage("images/car1.png")
     car2Image = loadImage("images/car2.png")
-    car3Image = loadImage("images/car3.png")
-    car4Image = loadImage("images/car4.png")
-    track = loadImage("images/track.jpg")
-    ground = loadImage("images/ground.png")
+    trackImage = loadImage("images/Track.jpg")
 
-    
 }
 function setup(){
-    createCanvas(windowWidth,windowHeight);
+    createCanvas(1200,600);
     database = firebase.database();
     game = new Game()
     game.getGameState()
@@ -31,7 +42,7 @@ function setup(){
 
 function draw(){
     background(ground);
-    if (playerCount === 4) {
+    if (playerCount === 2) {
         game.updateGameState(1)
     }
 

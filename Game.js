@@ -25,87 +25,64 @@ class Game{
             form = new Form();
             form.display();
         }
-        car1 = createSprite(100, 400, 20, 20)
-        car2 = createSprite(150, 400, 20, 20)
-        car3 = createSprite(200, 400, 20, 20)
-        car4 = createSprite(250, 400, 20, 20)
-        cars = [car1, car2, car3, car4]
-        car1.addImage(car1Image)
-        car2.addImage(car2Image)
-        car3.addImage(car3Image)
-        car4.addImage(car4Image)
+        
+        //make track
+        track = createSprite(600, 300, 60, 60)
+        track.addImage(trackImage)
+        
+        //make cars
+
+        //make walls
+        
+        wallsGroup = new Group()
+  
+  
+        //outside walls
+        wall1 = createSprite(600, 83, 680, 10)
+        wall2 = createSprite(600, 527, 680, 10)
+        wall3 = createSprite(259, 300, 10, 470)
+        wall4 = createSprite(944, 300, 10, 470)
+
+        //thick top and bottom walls
+        wall5 = createSprite(600, 187, 480, 40)
+        wall6 = createSprite(600, 428, 480, 40)
+        
+        //center thick wall
+        wall7 = createSprite(720, 310, 450, 35)
+
+        //inside walls
+        wall8 = createSprite(355, 310, 10, 280)
+        
+        wallsGroup.add(wall1)
+        wallsGroup.add(wall2)
+        wallsGroup.add(wall3)
+        wallsGroup.add(wall4)
+        wallsGroup.add(wall5)
+        wallsGroup.add(wall6)
+        wallsGroup.add(wall7)
+        wallsGroup.add(wall8)
+
+
+
     }
 
     play() {
         form.greeting.hide();
         Player.getPlayerInfo()
         player.getFinishedCars()
-        // {player1,player2,...} // name - distance
-        /* {
-            player1 : name : ""
-                      distance : 0
-        }
-        */
-        //for-in - loop through an object - JSON object or an array
-        var xPos = 350
-        var yPos;
-        var index = 0;
-
-        //player1 - car1 ,player2 -car2
-        //player1 - player.index =1 , cars[0]
-        //player2 - player.index =2, cars[1]
-        //display the track
-        image(track, 0, -6 * height, width, 7 * height)
+       
+        
         for (var plr in allPlayers) {
-            //text(allPlayers[plr].name + " - " + allPlayers[plr].distance , 200 , yPos)
-            yPos = height - allPlayers[plr].distance
-            cars[index].x = xPos;
-            cars[index].y = yPos;
-
-            //for the 3rd player to join the game - player.index = 3, cars index = 2
-            if (player.index - 1 === index) {
-                fill("red")
-                circle(xPos, yPos, 100)
-                camera.position.y = cars[index].y - height / 2 + 100
-            }
-
-            index = index + 1
-            xPos = xPos + 215
+           
             
         }
         
-        //update distance when up arrow is pressed
-        if (keyDown('UP_ARROW')) {
-            player.distance = player.distance + 50
-            player.update()
-        }
-
-        console.log(player.distance)
-
+        //controls for the car
         
-        drawSprites()
-       
-
-        if (player.distance > 4300) {
-            gameState = 2 
-            player.rank = player.rank + 1
-            player.updateFinishedCars(player.rank)
-            player.update()
-        }
     }
 
     end() {
-        console.log(player.rank)
-        camera.position.x = width / 2
-        camera.position.y = height / 2
         
-        var yPos = 300
-        for (var plr in allPlayers) {
-            fill("red")
-            textSize(23)
-            text(allPlayers[plr].name + "," + allPlayers[plr].rank, 300, yPos)
-            yPos = yPos + 30
-        }
     }
 }
 

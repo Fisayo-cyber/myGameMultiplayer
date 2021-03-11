@@ -2,8 +2,10 @@ class Player{
     constructor() {
         this.name = null;
         this.index = null;
-        this.distance = 0
+        this.xPos = 0
+        this.yPos = 0
         this.rank = null;
+        this.angle = 0
     }
 
     //get playerCount from the db
@@ -39,8 +41,10 @@ class Player{
         var playerIndex = "players/player" + this.index
         database.ref(playerIndex).set({
             name: this.name, 
-            distance: this.distance,
-            rank: this.rank
+            xPos: this.xPos,
+            yPos: this.yPos,
+            rank: this.rank,
+            angle: this.angle
         })
     }
     //it is related to all the players - 
