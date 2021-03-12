@@ -31,6 +31,16 @@ class Game{
         track.addImage(trackImage)
         
         //make cars
+        car1 = createSprite(403, 124, 70, 70)
+        car1.addImage(car1Image)
+        car1.scale = 0.55
+        car1.rotation  = 90
+        car2 = createSprite(403, 130, 70, 70)
+        car2.addImage(car2Image)
+        car2.scale = 0.55
+        car2.rotation = 90
+        cars = [car1, car2]
+        
 
         //make walls
         
@@ -61,7 +71,7 @@ class Game{
         wallsGroup.add(wall6)
         wallsGroup.add(wall7)
         wallsGroup.add(wall8)
-
+        //wallsGroup.setVisibleEach(false) 
 
 
     }
@@ -70,15 +80,58 @@ class Game{
         form.greeting.hide();
         Player.getPlayerInfo()
         player.getFinishedCars()
-       
+
+        player.xPos = cars[player.index - 1].x
+        player.yPos = cars[player.index - 1].y
         
-        for (var plr in allPlayers) {
-           
+        if (keyDown("LEFT_ARROW")) {
+            player.angle -= 1
+            player.update()
+        }
+
+        if (keyDown("RIGHT_ARROW")) {
+            player.angle += 1
+            player.update()
+        }
+
+        if (keyDown("UP_ARROW") && speed <= 2.5) {
+            speed += 0.1
+        }
+
+        else {
+            if (speed > 0) {
+                speed -= 1
+            }
             
+            else {
+                speed = 0
+            }
+
+        }
+
+        cars[player.index - 1].setSpeedAndDirection(speed, player.angle - 90)
+        if (cars[player.index-1].isTouching(wallsGroup)) {
+            player.xPos = 403
+            player.yPos = 130
+            player.angle = 90
+            console.log("HEY")
+        }
+        player.update()
+
+
+        var index = 0;
+        for (var plr in allPlayers) {
+            //display the cars according to database values 
+            cars[index].x = allPlayers[plr].xPos
+            cars[index].y = allPlayers[plr].yPos
+            cars[index].rotation = allPlayers[plr].angle
+            index += 1
+
         }
         
         //controls for the car
         
+        drawSprites()
     }
 
     end() {

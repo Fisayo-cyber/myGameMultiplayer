@@ -20,7 +20,8 @@ var wall8;
 var wall9;
 var wall10;
 var wallsGroup;
-
+var cars = []
+var speed = 0
 
 function preload() {
     car1Image = loadImage("images/car1.png")
@@ -41,7 +42,7 @@ function setup(){
 
 
 function draw(){
-    background(ground);
+    background("white");
     if (playerCount === 2) {
         game.updateGameState(1)
     }
@@ -53,4 +54,6 @@ function draw(){
     if (gameState === 2) {
         game.end()
     }
+
+    text(mouseX + ", " +mouseY, mouseX, mouseY)
 }

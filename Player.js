@@ -5,7 +5,7 @@ class Player{
         this.xPos = 0
         this.yPos = 0
         this.rank = null;
-        this.angle = 0
+        this.angle = 90;
     }
 
     //get playerCount from the db
