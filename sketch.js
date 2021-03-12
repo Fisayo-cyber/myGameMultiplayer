@@ -26,7 +26,7 @@ var speed = 0
 function preload() {
     car1Image = loadImage("images/car1.png")
     car2Image = loadImage("images/car2.png")
-    trackImage = loadImage("images/Track.jpg")
+    trackImage = loadImage("images/track.jpg")
 
 }
 function setup(){
