@@ -90,7 +90,8 @@ class Game{
         Player.getPlayerInfo()
         player.getFinishedCars()
         
-        cars[player.index-1].depth = 2 
+        cars[player.index - 1].depth = 2
+        console.log(car1.depth+","+ car2.depth)
         player.xPos = cars[player.index - 1].x
         player.yPos = cars[player.index - 1].y
         
