@@ -40,7 +40,8 @@ class Game{
         car2.scale = 0.55
         car2.rotation = 90
         cars = [car1, car2]
-        
+        car1.depth = 3
+        car2.depth = 3
         
 
         //make walls
@@ -89,7 +90,7 @@ class Game{
         Player.getPlayerInfo()
         player.getFinishedCars()
         
-
+        cars[player.index-1].depth = 2 
         player.xPos = cars[player.index - 1].x
         player.yPos = cars[player.index - 1].y
         
@@ -117,6 +118,8 @@ class Game{
             }
 
         }
+
+        
 
         cars[player.index - 1].setSpeedAndDirection(speed, player.angle - 90)
         
