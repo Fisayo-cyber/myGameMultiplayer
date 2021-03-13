@@ -41,6 +41,7 @@ class Game{
         car2.rotation = 90
         cars = [car1, car2]
         
+        
 
         //make walls
         
@@ -71,15 +72,23 @@ class Game{
         wallsGroup.add(wall6)
         wallsGroup.add(wall7)
         wallsGroup.add(wall8)
-        //wallsGroup.setVisibleEach(false) 
+        wallsGroup.setVisibleEach(false) 
 
 
+        //make checkpoints
+        checkPoint1 = createSprite(645, 250, 10, 90)
+        checkPoint1.visible = false
+        checkPoint2 = createSprite(645, 490, 10, 90)
+        checkPoint2.visible = false
+        checkPoint3 = createSprite(365, 130, 10, 90)
+        checkPoint3.visible = false
     }
 
     play() {
         form.greeting.hide();
         Player.getPlayerInfo()
         player.getFinishedCars()
+        
 
         player.xPos = cars[player.index - 1].x
         player.yPos = cars[player.index - 1].y
@@ -94,7 +103,7 @@ class Game{
             player.update()
         }
 
-        if (keyDown("UP_ARROW") && speed <= 2.5) {
+        if (keyDown("UP_ARROW") && speed <= 3.5) {
             speed += 0.1
         }
 
@@ -110,12 +119,31 @@ class Game{
         }
 
         cars[player.index - 1].setSpeedAndDirection(speed, player.angle - 90)
+        
         if (cars[player.index-1].isTouching(wallsGroup)) {
             player.xPos = 403
             player.yPos = 130
             player.angle = 90
+            check = 0
             console.log("HEY")
+            sound.play()
         }
+        if (cars[player.index-1].isTouching(checkPoint1)&& check === 0) {
+            check = 1
+        }
+
+        if (cars[player.index - 1].isTouching(checkPoint2) && check === 1) {
+            check = 2
+        }
+
+        if (cars[player.index - 1].isTouching(checkPoint3) && check === 2) {
+            gameState = 2
+            player.rank += 1
+            player.updateFinishedCars(player.rank)
+            player.update()
+            finishedSound.play()
+        }
+        console.log(check);
         player.update()
 
 
@@ -130,11 +158,19 @@ class Game{
         }
         
         //controls for the car
-        
+       
         drawSprites()
     }
 
     end() {
+        Player.getPlayerInfo()
+        console.log("You have finished the race")
+
+        var y = 300
+        for(var plr in allPlayers){
+            text(allPlayers[plr].name + ", " + allPlayers[plr].rank, 600, y)
+            y += 30
+        }
         
     }
 }

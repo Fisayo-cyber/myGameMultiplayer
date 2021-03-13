@@ -22,11 +22,20 @@ var wall10;
 var wallsGroup;
 var cars = []
 var speed = 0
+var sound, finishedSound
+var checkPoint1
+var checkPoint2
+var checkPoint3
+var check = 0
+
 
 function preload() {
     car1Image = loadImage("images/car1.png")
     car2Image = loadImage("images/car2.png")
     trackImage = loadImage("images/track.jpg")
+    finishedSound = loadSound("Sounds/finishedSound.mp3")
+    sound = loadSound("Sounds/Lose.mp3")
+    
 
 }
 function setup(){
@@ -35,6 +44,7 @@ function setup(){
     game = new Game()
     game.getGameState()
     game.start()
+   
 
     
 }
